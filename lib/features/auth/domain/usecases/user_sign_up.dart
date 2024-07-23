@@ -1,5 +1,6 @@
 import 'package:blog_app/core/error/failures.dart';
 import 'package:blog_app/core/usecase/usecase.dart';
+import 'package:blog_app/core/entities/user.dart';
 import 'package:blog_app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -9,13 +10,13 @@ import 'package:fpdart/fpdart.dart';
 /// a particular operation that your application needs to perform.
 /// It acts as a bridge between the presentation
 /// layer and the data layer.
-class UserSignUp implements UseCase<String,   UserSignUpParams> {
+class UserSignUp implements UseCase<User,   UserSignUpParams> {
 	  
    final AuthRepository authRepository;
   UserSignUp(this.authRepository);
 
   @override
-  Future<Either<Failure, String>> call(UserSignUpParams params) async{
+  Future<Either<Failure, User>> call(UserSignUpParams params) async{
     return await  authRepository.signUpWithEmailAndPassword(
       name: params.name,
       email: params.email,
